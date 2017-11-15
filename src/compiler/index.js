@@ -172,7 +172,7 @@ const compileUtil = {
     exps = exp.split('.');
     exps.forEach((key, index) => {
       key = key.trim();
-      if (index <= exps.length - 1) {
+      if (index < exps.length - 1) {
         val = val[key];
       } else {
         val[key] = value;
