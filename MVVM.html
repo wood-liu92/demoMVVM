@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  p{
+    background: red;
+    margin: 10px 0; 
+  }
+</style>
+  <script src="./src/core/observe.js"></script>
+  <script src="./src/watcher/index.js"></script>
+  <script src="./src/compiler/index.js"></script>
+  <script src="./src/core/index.js"></script>
+<body>
+    <div id="mvvm">
+        <h2>{{b}}</h2>
+        <input type="text" x-model="a">
+        <input type="text" name="" value="" x-model="a">
+        <p x-html="a">{{ a }}</p>
+        <button type="button" name="button" x-on:click="testToggle">change b</button>
+      </div>
+
+  <script>
+    var vm = new MVVM({
+      el: '#mvvm',
+      data: {
+        a: 'test model',
+        b: 'hello MVVM',
+        flag: true
+      },
+      methods: {
+        testToggle: function () {
+          this.flag = !this.flag;
+          this.b = this.flag ? 'hello MVVM' : 'test success'
+        }
+      }
+    });
+    console.log(vm);
+  </script>
+</body>
+</html>
