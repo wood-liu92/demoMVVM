@@ -25,15 +25,15 @@ Observer.prototype = {
     })
   },
   observeProperty: function (obj, key, val) {
-    let dep = new Dep();
+    let self = this;
+    self.dep = new Dep();
     let childOb = observe(val);
-    observe(val);
     Object.defineProperty(obj, key, {
       enumerable: true, // 可枚举
       configurable: true, // 可重新定义
       get: function() {
         if (Dep.target) {
-          dep.depend();
+          self.dep.depend();
         }
         if (childOb) {
           childOb.dep.depend();
@@ -48,7 +48,7 @@ Observer.prototype = {
         // 监听子属性
         childOb = observe(newVal);
         // 通知数据变更
-        dep.notify();
+        self.dep.notify();
       }
     })
   }

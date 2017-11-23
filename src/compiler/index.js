@@ -133,7 +133,6 @@ const compileUtil = {
     let updaterFn = updater[dir + 'Updater'];
     // 更新对应的视图
     updaterFn && updaterFn(node, this._getVmVal(vm, exp));
-
     new Watcher(vm, exp, function(value, oldValue) {
       updaterFn && updaterFn(node, value, oldValue);
     });
